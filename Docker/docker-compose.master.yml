@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  monolith-example:
+    container_name: monolith-example
+    image: hub.timelysoft.org/monolith-example:master
+    restart: always
+    ports:
+        - 5000:80
+    build:
+      context: .
+      dockerfile: API/Dockerfile
+    environment:
+            - ASPNETCORE_ENVIRONMENT=Master
+            - DOTNET_ENVIRONMENT=Master
+    volumes:
+            - /home/timelysoft/staticfiles:/app/VirtualDirectory
